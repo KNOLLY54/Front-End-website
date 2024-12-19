@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page with Animations</title>
+    <link rel="stylesheet" href="./stylesheet/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <img src="./images/Logo.png" alt="Logo" class="logo" id="logo">
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+               <button class="signup">Signup</button>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Front-End 101!</h1>
+            <p>Imagine building your dream website.</p>
+            <p>Imagine owning a website for your dream enterprise</p>
+            <p>You can achieve these and lots more with Front-End 101.</p>
+            <strong class="as">Begin your Journey as a web-developer Today!!</strong>
+           
+            <button class="cta-button" type="button" onclick="window.location.href='signup.html';">Get Started</button>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+// JavaScript for handling the word-by-word fade-in effect
+document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll('.fade-in-words');
+
+    elements.forEach((element, index) => {
+        const words = element.innerText.split(' '); // Split the text into words
+        element.innerHTML = ''; // Clear the existing text
+        
+        // Wrap each word in a span and append it
+        words.forEach((word, i) => {
+            const span = document.createElement('span');
+            span.innerText = word + ' '; // Add a space after each word
+            element.appendChild(span);
+        });
+
+        // Apply the fade-in effect word by word with a delay
+        const spans = element.querySelectorAll('span');
+        spans.forEach((span, i) => {
+            span.style.animationDelay = `${i * 0.5}s`; // Delay for each word
+        });
+    });
+
+    // Chain animations between lines
+    const lines = document.querySelectorAll('.fade-in-words');
+    let delay = 0;
+
+    lines.forEach((line, index) => {
+        setTimeout(() => {
+            line.classList.add('visible');
+        }, delay);
+
+        // Increase delay for the next line to start after the previous one finishes
+        delay += 10000; // Adjust time for how long each line takes to fully appear
+    });
+});
+
