@@ -47,39 +47,3 @@
 
 
 
-// JavaScript for handling the word-by-word fade-in effect
-document.addEventListener("DOMContentLoaded", () => {
-    const elements = document.querySelectorAll('.fade-in-words');
-
-    elements.forEach((element, index) => {
-        const words = element.innerText.split(' '); // Split the text into words
-        element.innerHTML = ''; // Clear the existing text
-        
-        // Wrap each word in a span and append it
-        words.forEach((word, i) => {
-            const span = document.createElement('span');
-            span.innerText = word + ' '; // Add a space after each word
-            element.appendChild(span);
-        });
-
-        // Apply the fade-in effect word by word with a delay
-        const spans = element.querySelectorAll('span');
-        spans.forEach((span, i) => {
-            span.style.animationDelay = `${i * 0.5}s`; // Delay for each word
-        });
-    });
-
-    // Chain animations between lines
-    const lines = document.querySelectorAll('.fade-in-words');
-    let delay = 0;
-
-    lines.forEach((line, index) => {
-        setTimeout(() => {
-            line.classList.add('visible');
-        }, delay);
-
-        // Increase delay for the next line to start after the previous one finishes
-        delay += 10000; // Adjust time for how long each line takes to fully appear
-    });
-});
-
